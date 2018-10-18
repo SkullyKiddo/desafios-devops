@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: idwall-app-deployment
+  labels:
+    app: idwall-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: idwall-app
+  template:
+    metadata:
+      labels:
+        app: idwall-app
+    spec:
+      containers:
+        - name: front-end
+          imagePullPolicy: Never
+          image: idwall-app
+          ports:
+            - containerPort: 3000
+          env:
+          - name: NAME
+            value: "Leandro"
