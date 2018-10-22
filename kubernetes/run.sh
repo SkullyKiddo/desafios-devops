@@ -8,10 +8,7 @@ minikube addons enable ingress
 docker build -t idwall-app .
 
 # Initiate pods
-kubectl create -f idwall-chart/templates/namespace.yaml || kubectl apply -f idwall-chart/templates/namespace.yaml
-kubectl create -f idwall-chart/templates/service.yaml || kubectl apply -f idwall-chart/templates/service.yaml
-kubectl create -f idwall-chart/templates/deploy.yaml || kubectl apply -f idwall-chart/templates/deploy.yaml
-kubectl create -f idwall-chart/templates/ingress.yaml || kubectl apply -f idwall-chart/templates/ingress.yaml
+helm upgrade --install --namespace=idwall-app idwall-app ./idwall-chart/
 
 # Set host on current machine
 host=$(kubectl get ingresses.extensions --namespace=idwall-app --no-headers | awk {'print $2'})
