@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: idwall-app-ingress
+  namespace: idwall-app
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:

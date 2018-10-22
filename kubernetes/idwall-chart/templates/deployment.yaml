@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: idwall-app-deployment
+  namespace: idwall-app
   labels:
     app: idwall-app
 spec:
@@ -22,4 +23,11 @@ spec:
             - containerPort: 3000
           env:
           - name: NAME
-            value: "Leandro"
+            value: "Leandro Furlan"
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 3000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+            failureThreshold: 2 
